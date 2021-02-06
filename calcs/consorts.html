@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Опыт наложниц</title>
+    <script src="../static/js/calcs/consorts.js"></script>
+    <link rel="stylesheet" href="../static/css/calcs/index.css">
+</head>
+<body>
+<h1>Калькулятор для расчета нового уровня умения из текущего уровня и имеющегося опыта наложницы</h1>
+<p>К сожалению, на данный момент калькулятор поддерживает рассчеты только до 500 уровня умений, вы можете помочь
+    расширить калькулятор дальше, заполнив данные в
+    <a href="https://docs.google.com/spreadsheets/d/18k5yH4kxl3nlCY3U2Ho4HdzeWvD1hWpjRFXzu9G4Co4/edit?usp=sharing">
+        таблице</a> (в виде комментариев) или написав на <a href="https://t.me/taery">taery</a></p>
+<p><label for="curr_level">Текущий уровень умения: </label><input type="number" id="curr_level" min="1" max="500"/>
+    <details>
+        <summary>Что за уровень?</summary>
+<p>Уровень умения наложницы - это такая циферка, которая написана справа от названия умения.</p>
+<img src="../static/assets/consorts/consort_level.jpeg" alt="уровень умения наложницы"
+     class="consort-lvl-img"></details>
+</p>
+
+<p><label for="free_exp">Имеющийся опыт: </label><input type="number" id="free_exp"/></p>
+
+<input type="button" value="Посчитать" onclick="consort_level(document.getElementById('curr_level').value,
+        document.getElementById('free_exp').value)"/>
+<p><label for="result">Новый уровень умения: </label><input type="text" contenteditable="false" id="result" disabled/>
+</p>
+<p>Сколько процентов даст уровень умения зависит от количества звезд от влитого жемчуга. Изначально каждый уровень дает
+    0.5% бонуса, каждая звезда добавляет к этому бонусу 0.1%. Т.е. 100 уровень без жемчуга даст 0.5*100=50%, а с 6
+    звездами - 1.1*100=110%</p>
+
+<p><label for="second_level">Уровень умения: </label><input type="number" id="second_level" min="1" max="500"/>
+</p>
+<p><label for="stars">Число звезд умения: </label><input type="number" id="stars" min="0" max="6"/>
+</p>
+<input type="button" value="Посчитать проценты" onclick="percent_from_levels(
+    document.getElementById('second_level').value,
+        document.getElementById('stars').value
+        )"/>
+<p><label for="result_percent">Получаем проценты: </label>
+    <input type="text" contenteditable="false" id="result_percent" disabled/>
+</p>
+</body>
+</html>

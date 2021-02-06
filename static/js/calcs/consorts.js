@@ -99,3 +99,12 @@ function consort_level(current_level, exp_to_spend) {
     }
     return res;
 }
+
+function percent_from_levels(current_level, stars) {
+    current_level = Number(current_level);
+    stars = stars ? Number(stars) : 0;
+    let res = (0.5 + 0.1 * stars) * current_level;
+    res = +(Math.round(res + "e+1") + "e-1")
+    document.getElementById("result_percent").value = res;
+    return res;
+}
