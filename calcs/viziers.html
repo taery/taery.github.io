@@ -1,10 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Репутация советников</title>
+    <script src="../static/js/calcs/viziers.js"></script>
+    <link rel="stylesheet" href="../static/css/calcs/index.css">
 </head>
 <body>
+<h1>Репутация советника в зависимости от талантов</h1>
+<p>Репутация от талантов на определенном уровне советника рассчитывается по формуле:</p>
+<img src="../static/assets/viziers/formula.png" alt="Формула репутации от талантов" class="formula-img">
+<p>По формуле выше считается "чистая" репутация от талантов - это значит, что <b>бонус гармонии или наложницы
+    добавляется к этому дополнительно</b></p>
+<p><label for="viz_level">Уровень советника: </label><input type="number" id="viz_level" min="1" max="600"/>
+</p>
+<p><label for="talents">Число талантов: </label><input type="number" id="talents" min="1" max="60000"/>
+</p>
+<input type="button" value="Посчитать репутацию" onclick="reputation_from_talent(
+    document.getElementById('viz_level').value,
+        document.getElementById('talents').value
+        )"/>
+<p><label for="result_rep">Итого репутации: </label>
+    <input type="text" contenteditable="false" id="result_rep" disabled/>
+</p>
+<p>Если надо посчитать, сколько репутации даст поднятие уровня при фиксированных талантах, используем калькулятор
+    ниже</p>
+<p><label for="from_level">Исходный уровень советника: </label><input type="number" id="from_level" min="0" max="600"/>
+</p>
+<p><label for="to_level">Новый уровень советника: </label><input type="number" id="to_level" min="1" max="600"/>
+</p>
+<p><label for="talents_2">Число талантов: </label><input type="number" id="talents_2" min="1" max="60000"/>
+</p>
+<input type="button" value="Посчитать репутацию" onclick="reputation_diff_of_levels(
+    document.getElementById('from_level').value,
+        document.getElementById('to_level').value,
+        document.getElementById('talents_2').value
+        )"/>
+<p><label for="result2">Итого репутации: </label>
+    <input type="text" contenteditable="false" id="result2" disabled/>
+</p>
+<p>Если же наоборот, надо зафиксировать уровень и влить талантов:</p>
+<p><label for="fix_level">Уровень советника: </label><input type="number" id="fix_level" min="1" max="600"/>
+</p>
+<p><label for="from_talents">Исходное число талантов: </label><input type="number" id="from_talents" min="0"
+                                                                     max="60000"/>
+</p>
+<p><label for="to_talents">Новое число талантов: </label><input type="number" id="to_talents" min="1" max="60000"/>
+</p>
+<input type="button" value="Посчитать репутацию" onclick="reputation_diff_of_talents(
+    document.getElementById('fix_level').value,
+        document.getElementById('from_talents').value,
+        document.getElementById('to_talents').value
+        )"/>
+<p><label for="result3">Итого репутации: </label>
+    <input type="text" contenteditable="false" id="result3" disabled/>
+</p>
+<p>А когда надо повысить и уровень и таланты влить, считаем тут:</p>
+<p><label for="start_level">Исходный уровень советника: </label><input type="number" id="start_level" min=0 max="600"/>
+</p>
+<p><label for="end_level">Новый уровень советника: </label><input type="number" id="end_level" min="1" max="600"/></p>
+<p><label for="start_talents">Исходное число талантов: </label><input type="number" id="start_talents" min="0"
+                                                                      max="60000"/>
+</p>
+<p><label for="end_talents">Новое число талантов: </label><input type="number" id="end_talents" min="1" max="60000"/>
+</p>
+<input type="button" value="Посчитать репутацию" onclick="reputation_diff_of_both(
+    document.getElementById('start_level').value,
+    document.getElementById('end_level').value,
+        document.getElementById('start_talents').value,
+        document.getElementById('end_talents').value
+        )"/>
+<p><label for="result4">Итого репутации: </label>
+    <input type="text" contenteditable="false" id="result4" disabled/>
+</p>
+<p>И маленький бонус - калькулятор урона в зависимости от уровня (<b>школа добавляется отдельно!</b>)</p>
+<p><label for="v_level">Уровень советника: </label><input type="number" id="v_level" min="1" max="600"/>
+</p>
+<p><label for="tactic_talents">Число талантов тактики: </label><input type="number" id="tactic_talents" min="1"
+                                                                      max="60000"/></p>
+<details>
+    <summary>Что за таланты тактики?</summary>
+    <p>Число талантов тактики - это такая циферка, ради которой нужно сложить все имеющиеся таланты в тактику у
+        советника. На скрине ниже 8821 талант тактики.</p>
+    <img src="../static/assets/viziers/vizier_tactic.jpeg" alt="таланты тактики"
+         class="vizier-tactic-img"></details>
 
+<p><label for="tactic_index">Показатель тактики: </label><input type="number" id="tactic_index"/></p>
+<details>
+    <summary>Что за показатель тактики?</summary>
+    <p>Показатель тактики - это общее число репутации тактики с бонусом наложницы и/или гармонии. На скрине ниже
+        показатель тактики равен 80510274 это сумма репутации от талантов, книг, бонуса наложницы и бонуса гармонии</p>
+    <img src="../static/assets/viziers/tactic_index.jpeg" alt="показатель тактики"
+         class="tactic-index-img"></details>
+<input type="button" value="Посчитать урон" onclick="vizier_power(
+    document.getElementById('v_level').value,
+        document.getElementById('tactic_talents').value,
+        document.getElementById('tactic_index').value
+        )"/>
+<p><label for="result_pow">Итого сила: </label>
+    <input type="text" contenteditable="false" id="result_pow" disabled/>
+</p>
+<p><i>Внимание! Если вы считаете сколько урона станет от повышения уровня советника - то конечно же необходимо
+    пересчитать покзатель тактики для нового уровня.</i> Если вам интересно прикинуть "на глаз" урон, показатель тактики
+    можно не пересчитывать, он на самом деле дает небольшой вклад в урон</p>
 </body>
 </html>
