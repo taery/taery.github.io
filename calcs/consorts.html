@@ -41,5 +41,18 @@
 <p><label for="result_percent">Получаем проценты: </label>
     <input type="text" contenteditable="false" id="result_percent" disabled/>
 </p>
+<p>Иногда есть необходимость посчитать, сколько опыта нужно, чтобы получить конкретный уровень умения. Мини-калькулятор
+    ниже.</p>
+<p><label for="a_level">Начальный уровень умения: </label><input type="number" id="a_level" min="1" max="500"/>
+</p>
+<p><label for="b_level">Будущий уровень умения: </label><input type="number" id="b_level" min="1" max="500"/>
+</p>
+<input type="button" value="Посчитать опыт" onclick="exp_diff(
+    document.getElementById('a_level').value,
+        document.getElementById('b_level').value
+        )"/>
+<p><label for="result_exp"> Необходимо опыта: </label>
+    <input type="text" contenteditable="false" id="result_exp" disabled/>
+</p>
 </body>
 </html>

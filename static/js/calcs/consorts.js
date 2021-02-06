@@ -108,3 +108,20 @@ function percent_from_levels(current_level, stars) {
     document.getElementById("result_percent").value = res;
     return res;
 }
+
+function exp_diff(current_level, new_level){
+    try {
+        current_level = Number(current_level);
+        new_level = Number(new_level);
+    } catch (e) {
+        alert('Проверьте заполнение уровней, что-то пошло не так!');
+        return;
+    }
+    if (current_level > new_level) {
+        alert('Новый уровень должен быть больше начального')
+        return ;
+    }
+    let res = get_exp(new_level) - get_exp(current_level);
+    document.getElementById("result_exp").value = res.toLocaleString("ru");
+    return res;
+}
