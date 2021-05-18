@@ -13,6 +13,7 @@
         walking_count.addEventListener('change', function () {
             document.getElementById("res_walking_100").value = 2 * this.value * 100;
             document.getElementById("res_sphere").value = Math.trunc(lucky_count.value / 2 / this.value);
+            document.getElementById("res_lucky").value = Math.ceil(sphere_count.value * this.value * 2 /10);
         });
 
         lucky_count.addEventListener('change', function () {
