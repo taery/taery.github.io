@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Всякие калькуляторы</title>
+    <script src="../static/js/calcs/utils.js"></script>
+    <link rel="stylesheet" href="../static/css/calcs/index.css">
+</head>
+<body>
+<h1>Сферы прогулок и удача</h1>
+<p>
+    <label for="walking_count">Вип: </label>
+    <select id="walking_count">
+        <option value="3">0</option>
+        <option value="4">1</option>
+        <option value="5">2</option>
+        <option value="6">3</option>
+        <option value="7">4</option>
+        <option value="8">5</option>
+        <option value="9">6</option>
+        <option value="10">7</option>
+        <option value="11">8</option>
+        <option value="12">9</option>
+        <option value="13">10</option>
+        <option value="14">11</option>
+        <option value="15">12</option>
+        <option value="16">13</option>
+    </select>
+</p>
+<p>На 100 сфер прогулок вам нужно <input type="text" id="res_walking_100" contenteditable="false" disabled value="600"/>
+    удачи
+</p>
+
+<p>C удачей <input type="text" id="lucky_count"/> вы можете потратить
+    <input type="text" id="res_sphere" contenteditable="false" disabled value="0"> сфер прогулок
+</p>
+<p>На <input type="text" id="sphere_count"/> сфер прогулок вам надо
+    <input type="text" id="res_lucky" contenteditable="false" disabled value="0"> сфер удачи
+</p>
+</body>
+</html>
